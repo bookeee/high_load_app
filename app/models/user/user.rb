@@ -4,4 +4,6 @@ class User::User < ApplicationRecord
 
   has_many :posts
 
+  validates_uniqueness_of :login
+
 end
