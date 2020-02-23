@@ -14,6 +14,7 @@ group :development, :test do
   gem "rspec"
   gem 'rspec-rails'
   gem "factory_bot"
+  gem 'database_cleaner'
 
   gem 'rubocop', '~> 0.75.1', require: false
   gem 'rubocop-performance'
