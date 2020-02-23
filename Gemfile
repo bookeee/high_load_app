@@ -11,7 +11,7 @@ gem 'puma', '~> 3.11'
 gem 'rails', '~> 5.2.3'
 
 group :development, :test do
-  gem 'byebug', platforms: %i[mri mingw x64_mingw]
+  gem 'pry', '~> 0.12.2'
 
   gem 'database_cleaner'
   gem 'factory_bot'
