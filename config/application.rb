@@ -12,6 +12,7 @@ require "action_view/railtie"
 require "action_cable/engine"
 # require "sprockets/railtie"
 require "rails/test_unit/railtie"
+require_relative '../app/middleware/request_timer'
 
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
@@ -22,6 +23,7 @@ module HighLoadApp
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 5.2
     config.autoload_paths += %W(#{config.root}/app)
+    config.middleware.use RequestTimer
 
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration can go into files in config/initializers
