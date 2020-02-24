@@ -15,6 +15,7 @@ module Services
           create_user if @login
           create_session if @ip
           create_post
+          create_statistics
         end
       rescue ActiveRecord::RecordInvalid => e
         Rails.logger.error(e.record.errors)
@@ -35,11 +36,15 @@ module Services
       end
 
       def create_post
-        if @user
-          @user.posts.create!(title: @title, content: @content)
-        else
-          Post.create!(title: @title, content: @content)
-        end
+        @post = if @user
+                  @user.posts.create!(title: @title, content: @content)
+                else
+                  Post.create!(title: @title, content: @content)
+                end
+      end
+
+      def create_statistics
+        @post.create_statistics!
       end
     end
   end
