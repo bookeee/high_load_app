@@ -9,7 +9,7 @@ module Api
         if @post.persisted?
           render json: @post, status: :ok
         else
-          render json: @post.errors, status: :unprocessable_entity
+          render_error_response(@post.errors.messages, 422)
         end
       end
 
