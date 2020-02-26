@@ -10,6 +10,10 @@ gem 'pg'
 gem 'puma', '~> 3.11'
 gem 'rails', '~> 5.2.3'
 
+gem 'redis'
+gem 'redis-namespace'
+gem 'redis-rails'
+
 group :development, :test do
   gem 'pry', '~> 0.12.2'
 
