@@ -11,10 +11,10 @@ class PostPresenter < Presenter
   private
 
   def title
-    @object.title
+    @object['title'] || @object.title
   end
 
   def content
-    @object.content
+    @object['content'] || @object.content
   end
 end
