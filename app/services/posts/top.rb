@@ -4,7 +4,7 @@ module Services
   module Posts
     class Top
       WHITELISTED_AMOUNT = (1..200_000).freeze
-      SMALL_AMOUNT = 10_000
+      SMALL_AMOUNT = 10000
 
       def initialize(amount)
         @amount = amount.to_i
@@ -42,20 +42,11 @@ module Services
       end
 
       def query_for_big_amount
-        sql = <<-SQL
-          SELECT *
-          FROM   unnest('{#{formatted_ids}}'::int[]) "id"
-          JOIN   posts "Post" USING ("id");
-        SQL
-        records_array = ActiveRecord::Base.connection.execute(sql)
-      end
-
-      def formatted_ids
-        posts_ids.join(',')
+        Queries::Posts::TopPostsQuery.new(@amount, posts_ids).call
       end
 
       def posts_ids
-        top_ratings.map(&:average)
+        top_ratings.map(&:last_est_id)
       end
     end
   end
