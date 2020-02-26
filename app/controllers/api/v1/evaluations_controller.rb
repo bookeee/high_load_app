@@ -4,12 +4,12 @@ module Api
   module V1
     class EvaluationsController < ApplicationController
       def do
-        @evaluation = Services::Evaluations::Create.new(evaluation_params, request.env[:timestamp]).call
+        @result = Services::Evaluations::Create.new(evaluation_params, request.env[:timestamp]).call
 
-        if @evaluation
-          render json: EvaluationPresenter.new(@evaluation), status: :created
+        if @result.is_a?(Evaluation)
+          render json: EvaluationPresenter.new(@result), status: :created
         else
-          render_error_response(@evaluation.errors.messages, 422)
+          render_error_response(@result, 422)
         end
       end
 
