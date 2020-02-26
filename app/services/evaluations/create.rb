@@ -15,9 +15,17 @@ module Services
           if @post
             create_evaluation
             calculate_rating
-            @evaluation
+          else
+            raise PostWithGivenIdDoesntExist
           end
         end
+        @evaluation
+      rescue ActiveRecord::RecordInvalid => e
+        Rails.logger.error(e.record.errors)
+        e
+      rescue PostWithGivenIdDoesntExist => e
+        Rails.logger.error(e.message)
+        e
       end
 
       private
@@ -28,8 +36,6 @@ module Services
 
       def create_evaluation
         @evaluation = @post.evaluations.create!(value: @value)
-      rescue ActiveRecord::RecordInvalid => e
-        Rails.logger.error(e.record.errors)
       end
 
       def set_post
