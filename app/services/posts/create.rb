@@ -17,6 +17,7 @@ module Services
           create_match if @login && @ip
           create_post
           create_statistics
+          @post
         end
       rescue ActiveRecord::RecordInvalid => e
         Rails.logger.error(e.record.errors)
