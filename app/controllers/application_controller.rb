@@ -8,7 +8,17 @@ class ApplicationController < ActionController::API
     render_error_response(e.message, 500)
   end
 
-  def render_error_response(message, status)
-    render json: { error: message }, status: status
+  def render_error_response(object, status)
+    render json: { error: message(object) }, status: status
+  end
+
+  private
+
+  def message(object)
+    if object.is_a?(Exception)
+      object.message
+    else
+      object.try(:errors).try(:messages)
+    end
   end
 end
