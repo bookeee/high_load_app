@@ -24,7 +24,7 @@ module Services
       end
 
       def last_est_id
-        current_evaluation.id
+        @current_evaluation.id
       end
 
       def est_amount
@@ -36,15 +36,11 @@ module Services
       end
 
       def evaluations
-        @evaluations ||= (previous_evaluations << current_evaluation)
+        @evaluations ||= (previous_evaluations << @current_evaluation)
       end
 
       def previous_evaluations
         @evaluations = @post.evaluations.previous_by_request(@request_timestamp).to_a
-      end
-
-      def current_evaluation
-        @current_evaluation
       end
 
       def values_sum
