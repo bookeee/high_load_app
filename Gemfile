@@ -14,6 +14,8 @@ gem 'redis'
 gem 'redis-namespace'
 gem 'redis-rails'
 
+gem 'dotenv-rails'
+
 group :development, :test do
   gem 'pry', '~> 0.12.2'
 
