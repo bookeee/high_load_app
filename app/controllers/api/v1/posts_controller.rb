@@ -7,7 +7,16 @@ module Api
         @post = Services::Posts::Create.new(post_params).call
 
         if @post.persisted?
-          render json: @post, status: :ok
+          render json: PostPresenter.new(@post), status: :ok
+        else
+          render_error_response(@post.errors.messages, 422)
+        end
+      end
+
+      def top
+        @posts = Services::Posts::Top.new(params[:posts_amount]).call
+        if @posts.present?
+          render json: PostsPresenter.new(@posts)
         else
           render_error_response(@post.errors.messages, 422)
         end
