@@ -46,11 +46,7 @@ module Services
       end
 
       def create_post
-        @post = if @user
-                  @user.posts.create!(title: @title, content: @content)
-                else
-                  Post.create!(title: @title, content: @content)
-                end
+        @post = @user.posts.create!(title: @title, content: @content)
       end
 
       def create_statistics
