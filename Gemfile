@@ -19,11 +19,16 @@ gem 'dotenv-rails'
 group :development, :test do
   gem 'pry', '~> 0.12.2'
 
+  gem 'mock_redis'
+
   gem 'database_cleaner'
-  gem 'factory_bot'
+  gem 'factory_bot_rails'
+  gem 'faker'
   gem 'faraday'
   gem 'rspec'
   gem 'rspec-rails'
+  gem 'shoulda-matchers', '~> 3.1'
+  gem 'timecop'
 
   gem 'rubocop', '~> 0.75.1', require: false
   gem 'rubocop-performance'
