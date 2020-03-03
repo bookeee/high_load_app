@@ -5,8 +5,7 @@ module Api
     class MatchesController < ApplicationController
       def index
         @matches = Match.all
-
-        render json: MatchesPresenter.new(@matches)
+        render json: { code: 200, matches: Matches::MatchesPresenter.new(@matches) }
       end
     end
   end
