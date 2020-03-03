@@ -3,8 +3,8 @@
 class Evaluation < ApplicationRecord
   belongs_to :post
 
-  validates_presence_of :value
-  validates_inclusion_of :value, in: 1..5
+  validates :value, presence: true
+  validates :value, inclusion: { in: 1..5 }
 
   scope :previous_by_request, ->(timestamp) { where('created_at <= ?', timestamp) }
 

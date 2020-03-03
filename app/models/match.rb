@@ -3,5 +3,5 @@
 class Match < ApplicationRecord
   serialize :logins, Array
 
-  validates_presence_of :ip, :logins
+  validates :ip, :logins, presence: true
 end
