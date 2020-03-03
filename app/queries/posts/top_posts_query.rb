@@ -16,7 +16,7 @@ module Queries
       end
 
       def call
-        if amount_cached? && amount_can_be_cached?(KEY_NAME)
+        if from_cache?
           get_records_from_cache
         else
           set_key
@@ -46,7 +46,11 @@ module Queries
       end
 
       def amount_cached?
-        list_count(KEY_NAME) >= amount
+        list_count >= amount
+      end
+
+      def list_count
+        deserialize(get_key).count
       end
 
       def sql
@@ -67,6 +71,10 @@ module Queries
 
       def formatted_ids
         @posts_ids.join(',')
+      end
+
+      def from_cache?
+        key_exists?(KEY_NAME) && amount_cached? && amount_can_be_cached?(KEY_NAME)
       end
     end
   end
