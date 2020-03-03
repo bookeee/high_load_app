@@ -1,8 +1,12 @@
 # frozen_string_literal: true
 
 module Cacheable
-  def amount_can_be_cached?(query_name)
-    amount <= Services::Settings::Cachings::Get.call(query_name, 'limit')
+  def amount_can_be_cached?(query)
+    amount <= limit(query)
+  end
+
+  def limit(query)
+    Services::Settings::Cachings::Get.call(query, 'limit')
   end
 
   def delete_(key)
@@ -14,14 +18,18 @@ module Cacheable
   end
 
   def set_expiration_time(key)
-    $redis.expire(key, Services::Settings::Cachings::Get.call(key, 'caching_time'))
+    $redis.expire(key, caching_time(key))
   end
 
-  def get_list(key, start_at, ends_at)
-    $redis.lrange(key, start_at, ends_at).first
+  def caching_time(query)
+    Services::Settings::Cachings::Get.call(query, 'caching_time')
   end
 
-  def list_count(key)
-    JSON.parse($redis.lrange(key, 0, 0).first).count
+  def get_list(key, starts_at, ends_at)
+    $redis.lrange(key, starts_at, ends_at).first
+  end
+
+  def key_exists?(key)
+    $redis.keys(key.to_s).any?
   end
 end
