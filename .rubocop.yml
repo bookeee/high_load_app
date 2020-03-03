@@ -1,12 +1,18 @@
+require:
+  - rubocop-performance
+  - rubocop-rails
+  - rubocop-rspec
+
 AllCops:
-  TargetRubyVersion: 2.6.5
+  TargetRubyVersion: 2.4.3
+  TargetRailsVersion: 5.2.3
   Include:
     -  'app/**/*'
     - 'config.ru'
     - 'Gemfile'
     - 'Guardfile'
     - 'Rakefile'
-
+    - 'spec/**/*'
   Exclude:
     - 'app/views/**/*'
     - 'bin/*'
@@ -35,3 +41,4 @@ Naming/FileName:
 
 Rails:
   Enabled: true
+
