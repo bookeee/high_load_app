@@ -3,7 +3,7 @@
 module Queries
   module Sessions
     class UsedByOtherUsersQuery
-      NAME = 'Used_by_another_user_query'
+      NAME = 'used_by_another_user_query'
 
       def initialize(ip, user_id)
         @ip = ip
