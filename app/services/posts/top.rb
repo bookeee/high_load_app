@@ -4,7 +4,7 @@ module Services
   module Posts
     class Top
       WHITELISTED_AMOUNT = (1..200_000).freeze
-      SMALL_AMOUNT = 10000
+      SMALL_AMOUNT = 10
 
       def initialize(amount)
         @amount = amount.to_i
@@ -13,6 +13,9 @@ module Services
       def call
         validate_amount
         top_posts
+      rescue WrongPostsAmount => e
+        Rails.logger.error(e.message)
+        e
       end
 
       private
@@ -46,7 +49,15 @@ module Services
       end
 
       def posts_ids
+        evaluations.map(&:post_id)
+      end
+
+      def evaluations_ids
         top_ratings.map(&:last_est_id)
+      end
+
+      def evaluations
+        Evaluation.where(id: [evaluations_ids])
       end
     end
   end
