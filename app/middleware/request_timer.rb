@@ -6,7 +6,7 @@ class RequestTimer
   end
 
   def call(env)
-    env[:timestamp] = Time.now
+    env[:timestamp] = Time.zone.now
     @app.call(env)
   end
 end
