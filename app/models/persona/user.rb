@@ -6,6 +6,6 @@ module Persona
 
     has_many :posts
 
-    validates_uniqueness_of :login
+    validates :login, uniqueness: true
   end
 end
