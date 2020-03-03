@@ -7,7 +7,7 @@ module Api
         @result = Services::Evaluations::Create.new(evaluation_params, request.env[:timestamp]).call
 
         if @result.is_a?(Evaluation)
-          render json: EvaluationPresenter.new(@result), status: :created
+          render json: { code: 200, evaluation: Evaluations::EvaluationPresenter.new(@result) }, status: :ok
         else
           render_error_response(@result, 422)
         end
