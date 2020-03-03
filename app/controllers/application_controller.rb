@@ -9,7 +9,7 @@ class ApplicationController < ActionController::API
   end
 
   def render_error_response(object, status)
-    render json: { error: message(object) }, status: status
+    render json: { code: 422, errors: message(object) }, status: status
   end
 
   private
