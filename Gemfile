@@ -16,6 +16,10 @@ gem 'redis-rails'
 
 gem 'dotenv-rails'
 
+gem 'pghero'
+gem 'pg_query', '>= 0.9.0'
+
+
 group :development, :test do
   gem 'pry', '~> 0.12.2'
 
