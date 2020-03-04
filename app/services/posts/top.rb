@@ -3,8 +3,8 @@
 module Services
   module Posts
     class Top
-      WHITELISTED_AMOUNT = (1..200_000).freeze
-      SMALL_AMOUNT = 10
+      WHITELISTED_AMOUNT = (1..7000).freeze
+      SMALL_AMOUNT = 300
 
       def initialize(amount)
         @amount = amount.to_i
