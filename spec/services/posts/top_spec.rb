@@ -36,7 +36,7 @@ RSpec.describe 'Top' do
   describe '#validate_amount' do
     context 'when amount is present in whitelisted amount' do
       before do
-        @amount = 100_000
+        @amount = 10
       end
 
       it 'returns nil' do
