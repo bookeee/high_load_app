@@ -17,6 +17,7 @@ You can change settings for Redis in .env file
     TOP_POSTS_CACHING_TIME=600  # in seconds, how much time we will store the result of "top_posts" query in Redis
     TOP_POSTS_LIMIT=100 # how much records we will store in Redis
 
+You should also do some changes to postgresql, see setup here: https://medium.com/@rutvijpandya/integrate-performance-dashboard-for-postgresql-in-rails-e41b28350265
 
 ### How to run
 
