@@ -1,0 +1,2 @@
+ENV["PGHERO_USERNAME"] = "link"
+ENV["PGHERO_PASSWORD"] = "hyrule"
