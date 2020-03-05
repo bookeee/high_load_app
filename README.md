@@ -226,13 +226,13 @@ RequestTimer class adds time when request hitting the app.
      end
 
  
- When we calculate the average rating we use this variable for filtering evaluations we need to calculate average evaluation.
+ When we calculate the average rating, we use this variable for evaluations filtering (class Evaluation), we need them to calculate average evaluation.
 
       #models/evaluation.rb
       
       scope :previous_by_request, ->(timestamp) { where('created_at <= ?', timestamp) }
 
- There are other approaches (we can use time from a client and use pessimistic lock, etc.)
+ There are other approaches (we can use time from a client and use pessimistic lock, but this one is simplest)
 
 #### matches#index
 
@@ -246,15 +246,15 @@ RequestTimer class adds time when request hitting the app.
 
 #### posts#top_posts 
 
-- we use Redis in case we have abig load in this endpoint (not specified in the task)
+- we use Redis in case we have a big load on this endpoint
 
 - max posts in the request is 7000
 
       WHITELISTED_AMOUNT = (1..7000).freeze
 
-- after 7000 it is reasonable to an return error (implemented) or add background worker (not implemented)
+- after 7000 it is reasonable to return an error (implemented) or add background worker + cache results from it for most popular amounts, like top 50, top 100, top 500, top 5000 (not implemented)
 
-     When we have 7000 top posts it takes 1 second for app to provide a response
+     When we have 7000 top posts it takes 1 second for app to provide a fresh response (not using Redis)
 
 
     Started GET "/api/v1/top_posts/6947" for 127.0.0.1 at 2020-03-03 18:13:15 -0700
