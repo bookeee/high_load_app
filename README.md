@@ -328,7 +328,7 @@ RequestTimer class adds time when request hitting the app.
     You can run "EXPLAIN  Select ..." 
     
 
-##### Results (you can run it in rails console after running seed.rb file):
+##### Results (you should run it in rails console after running seed.rb file):
 
 ###### 1.PgHero.long_running_queries
 
