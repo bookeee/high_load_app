@@ -319,11 +319,13 @@ RequestTimer class adds time when request hitting the app.
     
 
 
-#### To get statistics about queries I used:
+#### To get statistics about queries:
 
     gem 'pghero'
     gem 'pg_query', '>= 0.9.0'
     
+    +
+    You can run "EXPLAIN  Select ..." 
     
 
 ##### Results (you can run it in rails console after running seed.rb file):
