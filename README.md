@@ -511,7 +511,7 @@ When we do evaluations#do. We can take the last rating for post
      updated_at: Mon, 09 Mar 2020 21:35:11 UTC +00:00,  
      statistics_id: 10000>  
       
- And we can use " **values_sum**" and " **est_amount**" from record and "**value**" of new evaluation (class Evaluation), calculate it, and send it back to the client.      
+ And we can use " **values_sum**" and " **est_amount**" from record and "**value**" of new evaluation (class Evaluation), calculate new average, and send it back to the client.      
       
  **Other reasons:**  
  Replication support + Optimistic locking, atomic execution of commands blocks and scripts + Durability (persistency via snapshots and/or operations logs)
@@ -1151,7 +1151,7 @@ Post.where(id: 1…n) is faster option
 
 -------
 
-## rescue in nested transaction 
+## rescue in nested transactions
 
 [https://api.rubyonrails.org/classes/ActiveRecord/Transactions/ClassMethods.html](https://api.rubyonrails.org/classes/ActiveRecord/Transactions/ClassMethods.html)
 
@@ -1213,9 +1213,8 @@ Post.where(id: 1…n) is faster option
 
 ### posts#create endpoint
 
-################################3
 
-curl
+curl:
 
 
 	curl -X POST \
