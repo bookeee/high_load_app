@@ -20,7 +20,7 @@ module Services
           Rails.logger.error(e.record.errors)
         rescue ActiveRecord::RecordNotUnique => e
           if Persona::User.exists?(login: @login)
-            user
+            user = Persona::User.where(login: @login).first
           else
             Rails.logger.error(e.record.errors)
           end
